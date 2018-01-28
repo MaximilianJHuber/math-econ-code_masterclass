@@ -28,7 +28,7 @@ A2 = kronecker(sparseMatrix(1:nbY,1:nbY),matrix(1,1,nbDraws))
 A = rbind2(A1,A2)
 
 result   = gurobi ( list(A=A,obj=c(epsilon_iy),modelsense="max",rhs=c(rep(1/nbDraws,nbDraws),s_y) ,sense="="), params=list(OutputFlag=0) ) 
-
+  
 Uhat_y = - result$pi[(1+nbDraws):(nbY+nbDraws)] + result$pi[(nbY+nbDraws)]
 
 print("U_y (true and recovered)")
